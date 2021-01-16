@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body style="background-color:lightblue;"></body>
+<body>
+    <h1>Here is Nasa's image of the day!</h1>
+
+    <h3>{{data['title']}}</h3>
+
+    {% if data['media_type'] == "video" %}
+         <ifame width="420" hight="315" src ="{{data['url']}}"></ifame>
+    {% else %}
+         <img src=" {{data['url']}}">
+    {% endif %}
+
+    <p>{{data['explanation']}}</p>
+</body>
+</html>
