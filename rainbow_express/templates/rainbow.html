@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <h1>Daniel's rainbow</h1>
+    <h2>{{color}}</h2>
 </head>
-<body style="background-color: inherit;"></body>
+<body>
+    {% for usage in usages %}
+    <p><a href='{{usage}}'>{{usage}}</a></p>
+    {% endfor %}
+</body>
+<body style="background-{{css}}"></body>
 </html>
