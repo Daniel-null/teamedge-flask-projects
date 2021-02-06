@@ -1,0 +1,50 @@
+[
+    {
+        "Daniel":{
+                    "name":"Daniel-M",
+        
+                    "favoriteColor":"yellow",
+        
+                    "food":"sushi",
+        
+                    "age":15,
+        
+                    "highSchool":"Manhattan Center for Science and Mathmatics",
+        
+                    "zodiacSign":"Aries"
+        }
+
+    },
+    {
+        "Kendric":{
+                    "name": "Kendric",
+        
+                    "favoriteColor": "Red",
+        
+                    "food": "pizza",
+        
+                    "age": 15,
+        
+                    "highschool": "MCSM",
+        
+                    "zodiac": "aquarius"
+        }
+    },
+    {
+        "Mohamed":{
+                    "name":"Mohamed",
+        
+                    "favoriteColor":"purple",
+        
+                    "food":"pizza",
+        
+                    "age":17,
+       
+                    "highSchool":"BTHS",
+        
+                    "zodiacSign":"Scorpio"
+        }     
+
+    }
+
+]

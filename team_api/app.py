@@ -30,5 +30,12 @@ def Mohamed_json():
 		json_info = json.load(json_data)
 		return jsonify(json_info)
 
+@app.route('/Master', methods=['GET'])
+def master_json():
+	me_info = os.path.join(app.static_folder, 'data', 'master.json')
+	with open(me_info, 'r') as json_data:
+		json_info = json.load(json_data)
+		return jsonify(json_info)
+
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')
