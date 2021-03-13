@@ -4,16 +4,27 @@ import requests
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-	name='daniel'
-	h='sup'
-	friends = ['joe', 'kathrin', 'akeena']
-	return render_template('index.html', greeting=name,description=h, friends=friends)
+data = {
+    "firstName": "Coach",
+    "lastName": "Alyssa",
+    "hobbies": ["running", "skydiving", "bowling"],
+    "age": 300,
+    "children": [
+        {
+            "firstName": "Alice",
+            "age": 2
+        },
+        {
+            "firstName": "Bob",
+            "age": 4
+        }
+    ]
+}
 
-@app.route('/about')
-def about():
-	return '<h1>About</h1><p>some other content</p>'
+print(data["firstName"])
+print(data['children'[2]])
+print(data.firstName)
 
+       
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0')
