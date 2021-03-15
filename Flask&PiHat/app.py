@@ -9,8 +9,8 @@ from sense_emu import SenseHat
 #def info():
 #    return render_template('login.html')
 
-@app.route('/success/<name>')
-def index(name):
+@app.route('/success')
+def success(name):
     return 'welcome %s' % name
 
 @app.route('/login',methods = ['POST', 'GET'])
@@ -31,8 +31,6 @@ def login():
    #else:
     #user = request.args.get('nm')
     #return redirect(url_for('success',name = user))
-
-
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
