@@ -5,24 +5,34 @@ app = Flask(__name__)
 
 from sense_emu import SenseHat
 
-@app.route('/')
-def info():
-    return render_template('login.html')
+#@app.route('/')
+#def info():
+#    return render_template('login.html')
 
-#@app.route('/success')
-#def index(name):
-#    return 'welcome %s' % name
+@app.route('/success/<name>')
+def index(name):
+    return 'welcome %s' % name
 
-@app.route('/login')
+@app.route('/login',methods = ['POST', 'GET'])
 def login():
+   if request.method == 'POST':
+      user = request.form['nm']
+      return redirect(url_for('success',name = user))
+   else:
+      return render_template('login.html')
+
+
+#@app.route('/login')
+#def login():
    #if request.method == 'POST':
     #user = request.form['nm']
-    name = ''
-    return render_template('login.html', name = name)
+    #name = ''
+    #return render_template('login.html', name = name)
    #else:
     #user = request.args.get('nm')
     #return redirect(url_for('success',name = user))
 
 
 
-app.run(debug=True, host='0.0.0.0')
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0')
