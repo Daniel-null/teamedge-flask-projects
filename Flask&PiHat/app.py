@@ -9,7 +9,7 @@ from sense_emu import SenseHat
 #def info():
 #    return render_template('login.html')
 
-@app.route('/success')
+@app.route('/success/<name>')
 def success(name):
     return 'welcome %s' % name
 
