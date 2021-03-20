@@ -12,6 +12,12 @@ sense = SenseHat()
 #def info():
 #    return render_template('login.html')
 
+@app.route('/name')
+def name(name):
+   name= []
+   name.append(name)
+   return render_template('login.html', name=name)
+
 @app.route('/success/<name>')
 def success(name):
    sense.show_message(name)
