@@ -3,7 +3,10 @@ import requests
 
 app = Flask(__name__)
 
-from sense_emu import SenseHat
+from sense_hat import SenseHat   #import the SenseHat object from the sense_hat library
+from time import sleep
+#from sense_emu import SenseHat
+sense = SenseHat()
 
 #@app.route('/')
 #def info():
@@ -11,7 +14,8 @@ from sense_emu import SenseHat
 
 @app.route('/success/<name>')
 def success(name):
-    return 'welcome %s' % name
+   sense.show_message(name)
+   return 'welcome %s' % name
 
 @app.route('/login',methods = ['POST', 'GET'])
 def login():

@@ -1,0 +1,13 @@
+body {
+    background-color: lightblue;
+}
+p {
+    color: navy;
+    margin-left: 20px;
+}
+form {
+    width: 300px;
+    border: 15px solid blue;
+    padding: 50px;
+    margin: 20px;
+  }
