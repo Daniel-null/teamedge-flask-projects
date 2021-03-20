@@ -13,10 +13,11 @@ sense = SenseHat()
 #    return render_template('login.html')
 
 @app.route('/name')
-def name(name):
-   name= []
-   name.append(name)
-   return render_template('login.html', name=name)
+def name():
+   if len(name) == 0:
+      return redirect(url_for('login'))
+   
+
 
 @app.route('/success/<name>')
 def success(name):
