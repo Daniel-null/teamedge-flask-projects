@@ -22,7 +22,7 @@ def info():
 @app.route('/success/<name>')
 def success(name):
    sense.show_message(name)
-   return 'welcome %s' % name
+   return 'welcome %s' % name + '  :P'
 
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
