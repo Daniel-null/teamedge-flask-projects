@@ -8,14 +8,14 @@ from time import sleep
 #from sense_emu import SenseHat
 sense = SenseHat()
 
-#@app.route('/')
-#def info():
-#    return render_template('login.html')
+@app.route('/')
+def info():
+    return render_template('login.html')
 
-@app.route('/name')
-def name():
-   if len(name) == 0:
-      return redirect(url_for('login'))
+#@app.route('/name')
+#def name():
+#   if len(name) == 0:
+#      return redirect(url_for('login'))
    
 
 
