@@ -23,8 +23,8 @@ def info():
 @app.route('/send', methods=['POST', 'GET'])
 def sent():
    if request.method == 'POST':
-      messege = request.form['mn']
       name = request.form['nm']
+      messege = request.form['mn']
       conn = sqlite3.connect('./static/data/info.db')
       curs = conn.cursor()
       curs.execute("INSERT INTO names (name, messege) VALUES((?),(?))", (name,messege))
@@ -40,7 +40,7 @@ def all():
    conn = sqlite3.connect('./static/data/info.db')
    curs = conn.cursor()
    messeges = []
-   rows = curs.execute("SELECT *FROM names")
+   rows = curs.execute("SELECT * FROM names")
    for row in rows:
       messege = ({'name': row[0], 'messege':row[1]})
       messeges.append(messege)
