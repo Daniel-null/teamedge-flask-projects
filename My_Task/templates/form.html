@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <form action = "/all" method = "post">
+        <p>Please input your task below</p>
+        <p><input type = "text" name = "task" /></p>
+        <p><input type = "date" name = "date" /></p>
+        <p><input type = "submit" value = "submit" /></p>
+    </form>
+</head>
+<body>
+    <h2>Upcoming Tasks</h2>
+    <ul>
+        {% for task in to_dos %}
+        <li>
+            <span>{{task["todo"]}}</span>
+                <a href="{{ '/reminder/edit/%s'%task.id }}">Edit</a>
+                <a href="{{ '/reminder/delete/%s'%task.id }}">Delete</a>
+                <a href="{{ '/reminder/done/%s'%task.id }}">Done</a>
+        </li>
+ 	    {% endfor %}
+    </ul>
+
+</body>
+</html>
