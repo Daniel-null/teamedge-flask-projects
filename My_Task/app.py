@@ -72,7 +72,7 @@ def data(task, date):
     print(task)
     print(date)
 
-    scheduler.add_job(id=idb, func='test' , trigger='date', run_date=date, args=task)
+    scheduler.add_job(id=idb, func=test , trigger='date', run_date=date, args=[task])
 
     return redirect(url_for('all'))
 
@@ -114,12 +114,12 @@ def add(id):
         tasks.append(task)
     print(tasks)
         
-    scheduler.add_job(id=id, func='test' , trigger='date', run_date=tasks['date'], args=[tasks['task']])
+    scheduler.add_job(id=id, func=test , trigger='date', run_date=tasks['date'], args=[tasks['task']])
     #code to add task
     return render_template('form.html')
 
-def test():
-    print(hello)
+def test(args):
+    print(args)
     return 0
 
 
