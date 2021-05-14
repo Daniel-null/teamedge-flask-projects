@@ -41,14 +41,14 @@ def all():
         tasks = []
         rows = curs.execute("SELECT * FROM task")
         for row in rows:
-            task = ({'task': row[0], 'date':row[1]})
+            task = ({'id': row[0], 'task': row[1], 'date':row[2]})
             tasks.append(task)
 
         return render_template('form.html', tasks = tasks)
 
 
 
-@app.route('/data', methods = ['POST', 'GET'])
+@app.route('/data/<task>/<date>', methods = ['POST', 'GET'])
 def data(task, date):
     #database and storing task
     conn = sqlite3.connect('./static/data/task.db')
@@ -56,9 +56,9 @@ def data(task, date):
     curs.execute("INSERT INTO task (task, date) VALUES((?),(?))", (task, date))
     conn.commit ()
     #closes connection to database
-    conn.close()   
+    conn.close()
 
-    return redirect(url_for(''))
+    return redirect(url_for('all'))
 
 
 
@@ -70,26 +70,37 @@ def edit(id):
     #code to get task
     if(scheduler.get_job(id)):
         scheduler.get_job(id)
-        return render_template('form.html')
+        return redirect(url_for('all'))
     else:
-        return render_template('form.html')
+        return redirect(url_for('all'))
 
 
 @app.route('/reminder/delete/<id>')
 def delete(id):
-    scheduler.remove_job(id)
+    if(scheduler.get_job(id)):
+        scheduler.remove_job(id)
+        return redirect(url_for('all'))
+    else:
+        return redirect(url_for('all'))
+
     #code to delete task
-    return 0
 
-@app.route('/reminder/done/<id>')
-def add(id, task):
+@app.route('/reminder/done/<id>', methods=(['GET', 'POST']))
+def add(id):
+    print(id)
 
+    conn = sqlite3.connect('./static/data/task.db')
+    curs = conn.cursor()
+    tasks = []
+    rows = curs.execute("SELECT * FROM task WHERE rowid=%s"%id)
+    for row in rows:
+        task = ({'task': row[1], 'date':row[2]})
+        tasks.append(task)
+    print(tasks)
         
-    scheduler.add_job(id=id, func='all' , trigger='date', run_date=date, args=[task])
+    scheduler.add_job(id=id, func='all' , trigger='date', run_date=tasks['date'], args=[tasks['task']])
     #code to add task
     return render_template('form.html')
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
-
-

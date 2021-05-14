@@ -16,16 +16,16 @@
 <body>
     <h2>Upcoming Tasks</h2>
     {% for task in tasks %}
-        <p>{{task["task"]}} from {{task["date"]}}</p>
+        <p>{{task["task"]}} which is due {{task["date"]}}</p>
     {% endfor %}
 
     <ul>
-        {% for task in to_dos %}
+        {% for task in tasks %}
         <li>
-            <span>{{task["todo"]}}</span>
-                <a href="{{ '/reminder/edit/%s'%task.id }}">Edit</a>
-                <a href="{{ '/reminder/delete/%s'%task.id }}">Delete</a>
-                <a href="{{ '/reminder/done/%s'%task.id }}">Done</a>
+            <span>{{task["tasks"]}}</span>
+                <a href="{{'/reminder/edit/%s'%task.id }}"><buttom>edit</buttom></a>
+                <a href="{{'/reminder/delete/%s'%task.id }}">Delete</a>
+                <a href="{{'/reminder/done/%s'%task['id'] }}">Done</a>
         </li>
  	    {% endfor %}
     </ul>
