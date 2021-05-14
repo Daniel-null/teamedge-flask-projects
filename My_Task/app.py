@@ -58,6 +58,19 @@ def data(task, date):
     #closes connection to database
     conn.close()
 
+    #database pulling row id
+    conn = sqlite3.connect('./static/data/task.db')
+    curs = conn.cursor()     
+    row_id = []
+    rows = curs.execute("SELECT ROWID FROM task")
+    for row in rows:
+        row_idd = {'id': row[0]}
+        row_id.append(row_idd)
+    print(row_id[-1]['id'])
+    idb = str(row_id[-1]['id'])
+
+    scheduler.add_job(id=idb, func='all' , trigger='date', run_date=date, args=task)
+
     return redirect(url_for('all'))
 
 

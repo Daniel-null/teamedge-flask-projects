@@ -17,18 +17,14 @@
     <h2>Upcoming Tasks</h2>
     {% for task in tasks %}
         <p>{{task["task"]}} which is due {{task["date"]}}</p>
+        <ul>
+            <li>
+                <span>{{task["tasks"]}}</span>        
+                    <a href="{{'/reminder/edit/%s'%task.id }}"><buttom>edit</buttom></a>
+                    <a href="{{'/reminder/delete/%s'%task.id }}">Delete</a>
+                    <a href="{{'/reminder/done/%s'%task['id'] }}">Done</a>
+            </li> 
+        </ul>    
     {% endfor %}
-
-    <ul>
-        {% for task in tasks %}
-        <li>
-            <span>{{task["tasks"]}}</span>
-                <a href="{{'/reminder/edit/%s'%task.id }}"><buttom>edit</buttom></a>
-                <a href="{{'/reminder/delete/%s'%task.id }}">Delete</a>
-                <a href="{{'/reminder/done/%s'%task['id'] }}">Done</a>
-        </li>
- 	    {% endfor %}
-    </ul>
-
 </body>
 </html>
