@@ -93,30 +93,36 @@ def edit(id):
 
 @app.route('/reminder/delete/<id>')
 def delete(id):
-    if(scheduler.get_job(id)):
-        scheduler.remove_job(id)
-        return redirect(url_for('all'))
-    else:
-        return redirect(url_for('all'))
+    print(id)
+
+    scheduler.remove_job(id)
+    conn = sqlite3.connect('./static/data/task.db')
+    curs = conn.cursor()
+    curs.execute("DELETE FROM task WHERE ROWID=?", (id,))
+    conn.commit()
+
+    conn.close()        
+
+    return redirect(url_for('all'))
 
     #code to delete task
 
-@app.route('/reminder/done/<id>', methods=(['GET', 'POST']))
-def add(id):
-    print(id)
+#@app.route('/reminder/done/<id>', methods=(['GET', 'POST']))
+#def add(id):
+#    print(id)
 
-    conn = sqlite3.connect('./static/data/task.db')
-    curs = conn.cursor()
-    tasks = []
-    rows = curs.execute("SELECT * FROM task WHERE rowid=%s"%id)
-    for row in rows:
-        task = ({'task': row[1], 'date':row[2]})
-        tasks.append(task)
-    print(tasks)
+#    conn = sqlite3.connect('./static/data/task.db')
+#    curs = conn.cursor()
+#    tasks = []
+#    rows = curs.execute("SELECT * FROM task WHERE rowid=%s"%id)
+#    for row in rows:
+#        task = ({'task': row[1], 'date':row[2]})
+#        tasks.append(task)
+#    print(tasks)
         
-    scheduler.add_job(id=id, func=test , trigger='date', run_date=tasks['date'], args=[tasks['task']])
-    #code to add task
-    return render_template('form.html')
+#    scheduler.add_job(id=id, func=test , trigger='date', run_date=tasks['date'], args=[tasks['task']])
+#    #code to add task
+#    return render_template('form.html')
 
 def test(args):
     print(args)

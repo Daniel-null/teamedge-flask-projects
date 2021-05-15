@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="static/style.css">
 
     <form action = "/all" method = "post">
         <p>Please input your task below</p>
@@ -20,9 +21,8 @@
         <ul>
             <li>
                 <span>{{task["tasks"]}}</span>        
-                    <a href="{{'/reminder/edit/%s'%task.id }}"><buttom>edit</buttom></a>
-                    <a href="{{'/reminder/delete/%s'%task.id }}">Delete</a>
-                    <a href="{{'/reminder/done/%s'%task['id'] }}">Done</a>
+                    <a href="{{'/reminder/edit/%s'%task['id'] }}"><button>edit</button></a>
+                    <a href="{{'/reminder/delete/%s'%task['id'] }}"><button>Delete</button></a>
             </li> 
         </ul>    
     {% endfor %}
